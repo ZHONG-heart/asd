@@ -1,0 +1,1409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e5e5e5">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="中国最专业的足球数据平台,中超,中甲,英超,欧洲杯专业大数据.球员大数据,赛前,赛后,排行榜,实时球市,专家编辑," />
+    <meta name="keywords" content="实时球市,专家编辑,创冰科技,创冰数据," />
+    <meta name="author" content="上海创冰信息科技有限公司" />
+    <meta name="Copyright" content="上海创冰信息科技有限公司" />
+    <link href="./src/public/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./src/public/css/reset.css" rel="stylesheet" />
+    <link href="./src/public/css/layout.css" rel="stylesheet" />
+    <link href="./src/public/css/global-component.css" rel="stylesheet" />
+    <title>竞彩足球</title>
+    <style>
+      .bonus-optimize {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex: 1;
+      }
+
+      .main {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        height: -webkit-calc(100% - .8rem);
+        overflow: auto;
+      }
+
+      .line.minHeight {
+        width: 100%;
+        background: #e8e9ea;
+      }
+
+      .choose-game, .buy {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 .26rem;
+        background: #fff;
+      }
+
+      .choose-game {
+        flex: 0 0 .66rem;
+        border-bottom: 1px solid #e8e9ea;
+      }
+
+      .choose-game .choose-game-count,
+      .buy .buy-text {
+        color: #65686b;
+      }
+
+      .choose-game .choose-game-count {
+        font-size: .26rem;
+        color: #4a4a4a;
+      }
+
+      .choose-game .choose-game-type {
+        color: #525252;
+        font-size: .26rem;
+      }
+
+      .buy {
+        display: flex;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+        height: .5rem;
+        flex: 0 0 .5rem;
+        justify-content: center;
+      }
+
+      .buy .buy-text {
+        font-size: .28rem;
+      }
+
+      .buy .buy-left {
+        width: 2.08rem;
+      }
+
+      .buy .buy-right {
+        width: .6rem;
+        text-align: right;
+      }
+
+      .buy .buy-money-box {
+        height: 100%;
+        flex-grow: 1;
+      }
+
+      .buy .buy-money {
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 100%;
+        border-radius: .04rem;
+        background: #f3f5f7;
+        border: 1px solid #daeffa;
+        padding-left: .2rem;
+        box-sizing: border-box;
+      }
+
+      .product-type {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        height: .8rem;
+        padding: 0 .26rem .24rem;
+        background: #fff;
+        flex: 0 0 .8rem;
+      }
+
+      .product-type > li.selected {
+        background: #ed5b4f;
+        border-radius: 0;
+      }
+
+      .product-type > li.selected > header {
+        color: #fff;
+      }
+
+      .product-type > li.selected .prefix {
+        background: #fff;
+      }
+
+      .product-type > li.selected .prefix i {
+        display: inline-block;
+      }
+
+      .product-type > li {
+        flex: 0 0 32.4%;
+        background: #e8e9ea;
+        padding: .06rem;
+        box-sizing: border-box;
+        color: #777;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-type > li > header {
+        position: relative;
+        width: auto;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        font-size: .28rem;
+        height: auto;
+        top: auto;
+        z-index: 1;
+      }
+
+      .product-type > li .prefix {
+        display: block;
+        width: .32rem;
+        height: .32rem;
+        text-align: center;
+        border-radius: .06rem;
+        background: #b3b6bb;
+        margin: 0 .15rem 0 0;
+      }
+
+      .product-type > li .prefix i {
+        display: none;
+        width: .19rem;
+        height: .16rem;
+        background: url(./src/public/images/icon_selected.png) no-repeat 0 0;
+        background-size: cover;
+        margin-top: .08rem;
+      }
+
+      .product-type > li > article {
+        background: #fff;
+        height: -webkit-calc(100% - 0.8rem);
+        font-size: .24rem;
+        box-sizing: border-box;
+        padding: .1rem;
+      }
+
+      .product-type > li > article > p {
+        margin: .1rem 0;
+      }
+
+      .betting-group-tab {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex: 1;
+      }
+
+      .betting-group {
+        flex: 1;
+        margin-top: .25rem;
+        overflow: auto;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+      }
+
+      .betting-group-inner {
+        flex: 1;
+        overflow: auto;
+      }
+
+      .betting-group li {
+        background: #fff;
+      }
+
+      .betting-group li:last-child {
+        margin-bottom: 0;
+      }
+
+      .betting-group li > header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        height: .58rem;
+        position: relative;
+        top: auto;
+      }
+
+      .betting-group li .betting-name:before {
+        display: inline-block;
+        width: .12rem;
+        height: 100%;
+        background: #ed5b4f;
+        content: '';
+        vertical-align: middle;
+      }
+
+      .betting-group li .betting-name span:last-child {
+        font-size: .28rem;
+        color: #4a4a4a;
+        margin-left: .12rem;
+      }
+
+      .betting-group li .betting-delete {
+        display: -webkit-box;
+        -webkit-box-align: center;
+        padding-right: .26rem;
+      }
+
+      .betting-group li .betting-delete:before {
+        display: inline-block;
+        width: .2rem;
+        height: .19rem;
+        background: url(./src/public/images/icon_delete_betting.png) no-repeat 0 0;
+        background-size: cover;
+        content: '';
+        vertical-align: middle;
+      }
+
+      .betting-group li .betting-delete span:last-child {
+        color: #4a4a4a;
+        font-size: .24rem;
+        vertical-align: middle;
+      }
+
+      .betting-group li > section {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        border-top: 1px solid #e8e9ea;
+        border-bottom: 1px solid #e8e9ea;
+        box-sizing: border-box;
+      }
+
+      .betting-group li .betting-list {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        box-sizing: border-box;
+        border-right: 1px solid #e8e9ea;
+        font-size: .26rem;
+        color: #4a4a4a;
+        flex-basis: 50%;
+        word-break: break-all;
+      }
+
+      .betting-group li .betting-list .row {
+        flex: 1;
+        display: -webkit-box;
+        -webkit-box-align: stretch;
+        border-bottom: 1px solid #e8e9ea;
+        height: .62rem;
+        flex-basis: .62rem;
+        box-sizing: border-box;
+      }
+
+      .betting-item {
+        margin-bottom: .25rem;
+      }
+
+      .betting-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .betting-group li .betting-list .row:last-child {
+        border-bottom: 0 none;
+      }
+
+      .betting-group li .betting-list .row .column {
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        box-sizing: border-box;
+        border-right: 1px solid #e8e9ea;
+        padding: .15rem 0;
+        width: 33.33%;
+      }
+
+      .betting-group li .betting-list .row:last-child {
+        border-bottom: 0 none;
+      }
+
+      .betting-group li .betting-list .row .column:last-child {
+        border-right: 0 none;
+      }
+
+      .betting-group li .betting-list .row > .play,
+      .betting-group li .betting-list .row > .bonus {
+        -webkit-box-flex: 1;
+        box-sizing: border-box;
+      }
+      /*.betting-group li .betting-list .row > .play {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+      }*/
+
+      .betting-group li .betting-bonus {
+        flex: 1;
+        border-right: 1px solid #e8e9ea;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        text-align: center;
+      }
+
+      .betting-group li .betting-fold {
+        flex: 0 0 1.8rem;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .betting-group li .betting-fold.single-note {
+        border-right: 1px solid #e8e9ea;
+        flex-basis: 1.2rem;
+      }
+
+      .betting-group li footer {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        height: .56rem;
+        padding-right: .26rem;
+        font-size: .26rem;
+        color: #4a4a4a;
+        position: relative;
+        top: auto;
+        width: auto;
+        background: #fff;
+      }
+
+      .betting-group li footer .amount {
+        color: #ed5b4f;
+        font-weight: 700;
+        margin: 0 .2rem;
+      }
+
+      .betting-fold-inner > span {
+        display: block;
+        color: #4a4a4a;
+        font-size: .28rem;
+        margin-bottom: .24rem;
+        text-align: center;
+      }
+
+      .choosebox {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        width: 1.5rem;
+        height: .6rem;
+        box-sizing: border-box;
+        border: 1px solid #a5adbe;
+        border-radius: .05rem;
+        font-weight: 700;
+      }
+
+      .choosebox button {
+        display: block;
+        flex: 1;
+        background: #efeff4;
+        color: #4a4a4a;
+        font-size: .24rem;
+      }
+
+      .choosebox button.disabled {
+        color: #b3b6bb;
+      }
+
+      .choosebox input {
+        width: .6rem;
+        text-align: center;
+        font-size: .3rem;
+        color: #a5adbe;
+      }
+
+      .bonus-footer {
+        height: .94rem;
+      }
+
+      .input-amount {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        bottom: 0;
+        background: #fff;
+      }
+
+    </style>
+    <script type="text/template" id="gd_temp">
+      <div class="clear1 gd-config">
+        <div class="betting_title" style="float:none;line-height:36px;border-bottom:1px solid #eaeaea;background:#fff">
+          跟单配置<span class="vip"></span>
+        </div>
+        <div style="padding: 12px 10px 0; background:#fff;">
+          <div class="config">
+            <div class="config-left">跟单宣传语</div>
+            <div class="config-right"><input class="action-com fa-reason" style="width:100%" placeholder="点击输入" /></div>
+          </div>
+          <div class="config">
+            <div class="config-left">保密设置</div>
+            <div class="config-right clearfix">
+              <button class="action-com kdj bmsz selected" data-value="0" style="width: -webkit-calc((100% - 8px) / 3);float:left;">公开</button>
+              <button class="action-com kdj bmsz" data-value="2" style="width: -webkit-calc((100% - 8px) / 3);float:left;margin: 0 4px">结算可见</button>
+              <button class="action-com kdj bmsz" data-value="1" style="width: -webkit-calc((100% - 8px) / 3);float:left;">截止可见</button>
+            </div>
+          </div>
+          <div class="config">
+            <div class="config-left">利润分成</div>
+            <div class="config-right">
+              <div class="config-right clearfix">
+                <button class="action-com lrfc kdj selected" data-value="0" style="width: -webkit-calc((100% - 8px) / 2);float:left;">免费</button>
+                <button class="action-com lrfc jjfc kdj" style="width: -webkit-calc((100% - 8px) / 2);float:left;margin-left: 8px">奖金分成</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="config custom-lrfc" style="display: none">
+            <div class="config-left"></div>
+            <div class="config-right">
+              <div class="config-right clearfix">
+                <button class="action-com kdj pencent-v selected" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">1%</button>
+                <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px">2%</button>
+                <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">3%</button>
+                <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">4%</button>
+                <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;">5%</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="config custom-lrfc" style="display: none">
+            <div class="config-left"></div>
+            <div class="config-right">
+              <div class="config-right clearfix">
+                <span style="font-size: 16px; color: #616568; width: 54px;float:left;display:block; line-height:36px">自定义</span>
+                <input class="action-com percent" style="width: -webkit-calc(100% - 72px);float:left;" placeholder="点击输入百分比" />
+                <span style="float: left; line-height:36px; width: 18px; text-align:right">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <!-- 源文件 start -->
+    <script src="dist/suitable.js"></script>
+    <script> suitable(); </script>
+    <script src="dist/nb.js"></script>
+
+    <!-- 常用组件 -->
+    <script src="src/components/globals/ChooseBox.js"></script>
+    <script src="src/components/globals/Modal.js"></script>
+    <script src="src/components/globals/InputAmount.js"></script>
+
+    <!-- 容器组件 -->
+    <script src="src/components/layouts/Header.js"></script>
+    <script src="src/components/layouts/Main.js"></script>
+
+    <!-- 页面组件 -->
+    <script src="src/components/pages/BonusOptimize.js"></script>
+    
+    <!-- html2canvas -->
+    <script src="src/public/js/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div id="jc_content">
+        <div id="step1">
+            <!-------- header -------->
+            <header>
+                <div class="header">
+                    <div class="back"><img src="./src/public/images/icon_back.png"><a href="javascript:goAPP('app');">返回</a></div>
+                    <div id="cate1" class="cate1">
+                        <div class="cate_wrp">
+                            <div class="cate_inp" id="tag_select" value='15' style="float: none;width: auto;text-align: center;">竞彩足球</div>
+                            <!--<a href="javascript:;" class="cate_tri"></a>-->
+                        </div>
+                        <div class="cate_drop" style="display:none" id="menu">
+                            <ul id="nav1">
+                                <a href="javascript:;" class="navButton"><li value='10' class="selected">胜平负</li></a>
+                                <a href="javascript:;" class="navButton"><li value='11'>比分</li></a>
+                                <a href="javascript:;" class="navButton"><li value='12'>总进球</li></a>
+                                <a href="javascript:;" class="navButton"><li value='13'>半全场</li></a>
+                                <a href="javascript:;" class="navButton"><li value='14'>单关</li></a>
+                                <a href="javascript:;" class="navButton"><li value='15'>混合投注</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="match">
+                        <!--<a href="javascript:;" onClick="document.getElementById('t2').style.display='block';"><img src="./src/public/images/icon_match.png"></a>-->
+                        <div id="t2" style="display: none;">
+                            <div class="t4_title">
+                                <div class="t2_top"><img src="./src/public/images/icon_match.png"> 赛事筛选</div>
+                                <div class="match_title">
+                                    <div class="button" id="btn_ln_all">全选</div>
+                                    <div class="button" id="btn_ln_reverse">反选</div>
+                                    <div class="button" id="btn_ln_top5">五大联赛</div>
+                                </div>
+                                <div class="match_content" id="searchKey" style="height:200px; overflow:scroll;">
+                                    <div class="league"  v-for="group in group_ln" :value="group.ln">{{group.ln}}({{group.count}})</div>
+                                </div>
+                                <div class="pop_btn">
+                                    <div class="pop_btntitle2_left" onClick="document.getElementById('t2').style.display='';">取消</div>
+                                    <div class="pop_btntitle2_right" id="btn_ln_ok">确定</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-------- section -------->
+            <section class="section1">
+                <!-------- 胜平负 -------->
+                <div class="tag10 nav1" style='display:none;'>
+                    <div style="width:100%;" v-for="group in group_ex">
+                            <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs.length}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                            <div class="panel">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info" v-for="match in filteredBattles(group.matchs)"
+                                :EXPECT="match.EXPECT" :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID" :MID="match.MID" :SID="match.SID"
+                                :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :SPF_SP3="match.SPF_SP3" :SPF_SP1="match.SPF_SP1"
+                                :SPF_SP0="match.SPF_SP0" :RQSPF_SP3="match.RQSPF_SP3" :RQSPF_SP1="match.RQSPF_SP1" :RQSPF_SP0="match.RQSPF_SP0" :LET="match.LET" :LN="match.LN">
+                                    <tr>
+                                        <td class="bule_title">{{match.LN}}</td>
+                                        <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">{{match.XID|substr}}<br>截止{{match.MTIME.substr(11,5)}}</td>
+                                        <td class="yellow" style="position: relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.SPF_DG=='1'" class="dg" />0</td>
+                                        <td class="selection" tag_show="胜" v-if="match.SPF_SP3!=''" tag_text="SPF_SP3" :tag_val="match.SPF_SP3">胜 <span class="yellow aaa">{{match.SPF_SP3}}</span></td>
+                                        <td class="selection" tag_show="平" v-if="match.SPF_SP1!=''" tag_text="SPF_SP1" :tag_val="match.SPF_SP1">平 <span class="yellow">{{match.SPF_SP1}}</span></td>
+                                        <td class="selection" tag_show="负" v-if="match.SPF_SP0!=''" tag_text="SPF_SP0" :tag_val="match.SPF_SP0">负 <span class="yellow">{{match.SPF_SP0}}</span></td>
+                                        <td colspan="3" v-else><span>不支持胜平负</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="red" style="position: relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.RQSPF_DG=='1'" class="dg" />{{ match.LET }}</td>
+                                        <td class="selection" tag_show="让胜" v-if="match.RQSPF_SP3!=''" tag_text="RQSPF_SP3" :tag_val="match.RQSPF_SP3">胜 <span class="yellow">{{match.RQSPF_SP3}}</span></td>
+                                        <td class="selection" tag_show="让平" v-if="match.RQSPF_SP1!=''" tag_text="RQSPF_SP1" :tag_val="match.RQSPF_SP1">平 <span class="yellow">{{match.RQSPF_SP1}}</span></td>
+                                        <td class="selection" tag_show="让负" v-if="match.RQSPF_SP0!=''" tag_text="RQSPF_SP0" :tag_val="match.RQSPF_SP0">负 <span class="yellow">{{match.RQSPF_SP0}}</span></td>
+                                        <td colspan="3" v-else><span>不支持让球胜平负</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+
+                <!-------- 比分 -------->
+                <div class="tag11 nav1" style='display:none;'>
+                    <div style="width:100%;"  v-for="group in group_ex">
+                        <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs.length}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                        <div class="panel">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info"  v-for="match in filteredBattles(group.matchs)"
+                            :EXPECT="match.EXPECT" :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID" :SID="match.SID" :MID="match.MID" :LET="match.LET"
+                            :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :LN="match.LN">
+                                <tr>
+                                    <td class="bule_title">{{match.LN}}</td>
+                                    <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="30%">{{match.XID|substr}}<br>截止{{match.MTIME.substr(11,5)}}</td>
+                                    <td colspan="4" width="70%">
+                                        <a href="javascript:;" onClick="$(this).next().show();">更多>></a>
+                                        <div class="t3 for_self_selected" style="display: none;">
+                                            <div class="t3_title">
+                                                <div class="t3_top">{{match.HTEAM}} vs {{match.ATEAM}}</div>
+                                                <p class="red">胜</p>
+                                                <div>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table2">
+                                                        <tr>
+                                                            <td class="selection" tag_show="1:0" tag_text="BF_SP10" :tag_val="match.BF_SP10">1:0<br><span class="yellow">{{match.BF_SP10}}</span></td>
+                                                            <td class="selection" tag_show="2:0" tag_text="BF_SP20" :tag_val="match.BF_SP20">2:0<br><span class="yellow">{{match.BF_SP20}}</span></td>
+                                                            <td class="selection" tag_show="2:1" tag_text="BF_SP21" :tag_val="match.BF_SP21">2:1<br><span class="yellow">{{match.BF_SP21}}</span></td>
+                                                            <td class="selection" tag_show="3:0" tag_text="BF_SP30" :tag_val="match.BF_SP30">3:0<br><span class="yellow">{{match.BF_SP30}}</span></td>
+                                                            <td class="selection" tag_show="3:1" tag_text="BF_SP31" :tag_val="match.BF_SP31">3:1<br><span class="yellow">{{match.BF_SP31}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="3:2" tag_text="BF_SP32" :tag_val="match.BF_SP32">3:2<br><span class="yellow">{{match.BF_SP32}}</span></td>
+                                                            <td class="selection" tag_show="4:0" tag_text="BF_SP40" :tag_val="match.BF_SP40">4:0<br><span class="yellow">{{match.BF_SP40}}</span></td>
+                                                            <td class="selection" tag_show="4:1" tag_text="BF_SP41" :tag_val="match.BF_SP41">4:1<br><span class="yellow">{{match.BF_SP41}}</span></td>
+                                                            <td class="selection" tag_show="4:2" tag_text="BF_SP42" :tag_val="match.BF_SP42">4:2<br><span class="yellow">{{match.BF_SP42}}</span></td>
+                                                            <td class="selection" tag_show="5:0" tag_text="BF_SP50" :tag_val="match.BF_SP50">5:0<br><span class="yellow">{{match.BF_SP50}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="5:1" tag_text="BF_SP51" :tag_val="match.BF_SP51">5:1<br><span class="yellow">{{match.BF_SP51}}</span></td>
+                                                            <td class="selection" tag_show="5:2" tag_text="BF_SP52" :tag_val="match.BF_SP52">5:2<br><span class="yellow">{{match.BF_SP52}}</span></td>
+                                                            <td class="selection" tag_show="胜其他" tag_text="BF_SP93" :tag_val="match.BF_SP93" colspan="3">胜其他<br><span class="yellow">{{match.BF_SP93}}</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <p class="yellow">平</p>
+                                                <div>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table2">
+                                                        <tr>
+                                                            <td class="selection" tag_show="0:0" tag_text="BF_SP00" :tag_val="match.BF_SP00">0:0<br><span class="yellow">{{match.BF_SP00}}</span></td>
+                                                            <td class="selection" tag_show="1:1" tag_text="BF_SP11" :tag_val="match.BF_SP11">1:1<br><span class="yellow">{{match.BF_SP11}}</span></td>
+                                                            <td class="selection" tag_show="2:2" tag_text="BF_SP22" :tag_val="match.BF_SP22">2:2<br><span class="yellow">{{match.BF_SP22}}</span></td>
+                                                            <td class="selection" tag_show="3:3" tag_text="BF_SP33" :tag_val="match.BF_SP33">3:3<br><span class="yellow">{{match.BF_SP33}}</span></td>
+                                                            <td class="selection" tag_show="其他平" tag_text="BF_SP91" :tag_val="match.BF_SP91">其他平<br><span class="yellow">{{match.BF_SP91}}</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <p class="green">负</p>
+                                                <div>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table2">
+                                                        <tr>
+                                                            <td class="selection" tag_show="0:1" tag_text="BF_SP01" :tag_val="match.BF_SP01">0:1<br><span class="yellow">{{match.BF_SP01}}</span></td>
+                                                            <td class="selection" tag_show="0:2" tag_text="BF_SP02" :tag_val="match.BF_SP02">0:2<br><span class="yellow">{{match.BF_SP02}}</span></td>
+                                                            <td class="selection" tag_show="1:2" tag_text="BF_SP12" :tag_val="match.BF_SP12">1:2<br><span class="yellow">{{match.BF_SP12}}</span></td>
+                                                            <td class="selection" tag_show="0:3" tag_text="BF_SP03" :tag_val="match.BF_SP03">0:3<br><span class="yellow">{{match.BF_SP03}}</span></td>
+                                                            <td class="selection" tag_show="1:3" tag_text="BF_SP13" :tag_val="match.BF_SP13">1:3<br><span class="yellow">{{match.BF_SP13}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="2:3" tag_text="BF_SP23" :tag_val="match.BF_SP23">2:3<br><span class="yellow">{{match.BF_SP23}}</span></td>
+                                                            <td class="selection" tag_show="0:4" tag_text="BF_SP04" :tag_val="match.BF_SP04">0:4<br><span class="yellow">{{match.BF_SP04}}</span></td>
+                                                            <td class="selection" tag_show="1:4" tag_text="BF_SP14" :tag_val="match.BF_SP14">1:4<br><span class="yellow">{{match.BF_SP14}}</span></td>
+                                                            <td class="selection" tag_show="2:4" tag_text="BF_SP24" :tag_val="match.BF_SP24">2:4<br><span class="yellow">{{match.BF_SP24}}</span></td>
+                                                            <td class="selection" tag_show="0:5" tag_text="BF_SP05" :tag_val="match.BF_SP05">0:5<br><span class="yellow">{{match.BF_SP05}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="1:5" tag_text="BF_SP15" :tag_val="match.BF_SP15">1:5<br><span class="yellow">{{match.BF_SP15}}</span></td>
+                                                            <td class="selection" tag_show="2:5" tag_text="BF_SP25" :tag_val="match.BF_SP25">2:5<br><span class="yellow">{{match.BF_SP25}}</span></td>
+                                                            <td class="selection" tag_show="负其他" tag_text="BF_SP90" :tag_val="match.BF_SP90" colspan="3">负其他<br><span class="yellow">{{match.BF_SP90}}</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="pop_btn">
+                                                    <div class="pop_btntitle2_left" onClick="thisApp.methods.cancel_selected(this);">取消</div>
+                                                    <div class="pop_btntitle2_right" onClick="$(this).parents('.t3').hide();">确定</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-------- 总进球 -------->
+                <div class="tag12 nav1" style='display:none;'>
+                    <div style="width:100%;"  v-for="group in group_ex">
+                        <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs.length}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                        <div class="panel">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info" v-for="match in filteredBattles(group.matchs)" :EXPECT="match.EXPECT" :XID="match.XID"
+                            :LOTTID="match.LOTTID" :LID="match.LID" :MID="match.MID" :SID="match.SID" :MTIME="match.MTIME" :LET="match.LET"
+                            :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :LN="match.LN">
+                                <tr>
+                                    <td class="bule_title">{{match.LN}}</td>
+                                    <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">{{match.XID|substr}}<br>截止{{match.MTIME.substr(11,5)}}</td>
+                                    <td class="selection" tag_show="0球" tag_text="JQS_SP0" :tag_val="match.JQS_SP0">0 <span class="yellow">{{match.JQS_SP0}}</span></td>
+                                    <td class="selection" tag_show="1球" tag_text="JQS_SP1" :tag_val="match.JQS_SP1">1 <span class="yellow">{{match.JQS_SP1}}</span></td>
+                                    <td class="selection" tag_show="2球" tag_text="JQS_SP2" :tag_val="match.JQS_SP2">2 <span class="yellow">{{match.JQS_SP2}}</span></td>
+                                    <td class="selection" tag_show="3球" tag_text="JQS_SP3" :tag_val="match.JQS_SP3">3 <span class="yellow">{{match.JQS_SP3}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="selection" tag_show="4球" tag_text="JQS_SP4" :tag_val="match.JQS_SP4">4 <span class="yellow">{{match.JQS_SP4}}</span></td>
+                                    <td class="selection" tag_show="5球" tag_text="JQS_SP5" :tag_val="match.JQS_SP5">5 <span class="yellow">{{match.JQS_SP5}}</span></td>
+                                    <td class="selection" tag_show="6球" tag_text="JQS_SP6" :tag_val="match.JQS_SP6">6 <span class="yellow">{{match.JQS_SP6}}</span></td>
+                                    <td class="selection" tag_show="6球+" tag_text="JQS_SP7" :tag_val="match.JQS_SP7">6+ <span class="yellow">{{match.JQS_SP7}}</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-------- 半全场 -------->
+                <div class="tag13 nav1" style='display:none;'>
+                    <div style="width:100%;" v-for="group in group_ex">
+                        <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs.length}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                        <div class="panel">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info"  v-for="match in filteredBattles(group.matchs)" :EXPECT="match.EXPECT" :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID"
+                            :MID="match.MID" :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :SID="match.SID" :LET="match.LET" :LN="match.LN">
+                                <tr>
+                                    <td class="bule_title">{{match.LN}}</td>
+                                    <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="30%">{{match.XID|substr}}<br>截止{{match.MTIME.substr(11,5)}}</td>
+                                    <td colspan="4" width="70%">
+                                        <a href="javascript:;" onClick="$(this).next().show();">更多>></a>
+                                        <div class="t4 for_self_selected" style="display: none;">
+                                            <div class="t2_title">
+                                                <div class="t3_top">{{match.HTEAM}} vs {{match.ATEAM}}</div>
+                                                <p class="blue">半全场</p>
+                                                <div>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1">
+                                                        <tr>
+                                                            <td class="selection" tag_show="胜胜" tag_text="BQC_SP33" :tag_val="match.BQC_SP33">胜胜 <span class="yellow">{{match.BQC_SP33}}</span></td>
+                                                            <td class="selection" tag_show="胜平" tag_text="BQC_SP31" :tag_val="match.BQC_SP31">胜平 <span class="yellow">{{match.BQC_SP31}}</span></td>
+                                                            <td class="selection" tag_show="胜负" tag_text="BQC_SP30" :tag_val="match.BQC_SP30">胜负 <span class="yellow">{{match.BQC_SP30}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="平胜" tag_text="BQC_SP13" :tag_val="match.BQC_SP13">平胜 <span class="yellow">{{match.BQC_SP13}}</span></td>
+                                                            <td class="selection" tag_show="平平" tag_text="BQC_SP11" :tag_val="match.BQC_SP11">平平 <span class="yellow">{{match.BQC_SP11}}</span></td>
+                                                            <td class="selection" tag_show="平负" tag_text="BQC_SP10" :tag_val="match.BQC_SP10">平负 <span class="yellow">{{match.BQC_SP10}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="负胜" tag_text="BQC_SP03" :tag_val="match.BQC_SP03">负胜 <span class="yellow">{{match.BQC_SP03}}</span></td>
+                                                            <td class="selection" tag_show="负平" tag_text="BQC_SP01" :tag_val="match.BQC_SP01">负平 <span class="yellow">{{match.BQC_SP01}}</span></td>
+                                                            <td class="selection" tag_show="负负" tag_text="BQC_SP00" :tag_val="match.BQC_SP00">负负 <span class="yellow">{{match.BQC_SP00}}</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="pop_btn">
+                                                    <div class="pop_btntitle2_left" onClick="thisApp.methods.cancel_selected(this);">取消</div>
+                                                    <div class="pop_btntitle2_right" onClick="$(this).parents('.t4').hide();">确定</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-------- 单关 -------->
+                <div class="tag14 nav1" style='display:none;'>
+                    <div style="width:100%;" v-for="group in group_ex">
+                        <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs|match_dg}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                        <div class="panel">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info"  v-for="match in filteredBattles(group.matchs)"
+                             v-if="match.SPF_DG=='1'|match.RQSPF_DG=='1'" :SPFDG="match.SPF_DG" :BFDG="match.BF_DG" :RQSPFDG="match.RQSPF_DG"
+                             :JQSDG="match.JQS_DG" :BQCDG="match.BQC_DG" :EXPECT="match.EXPECT"
+                             :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID" :MID="match.MID" :LET="match.LET"
+                             :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :LN="match.LN" :SID="match.SID"
+                             :SPF_SP3="match.SPF_SP3" :SPF_SP1="match.SPF_SP1"
+                             :SPF_SP0="match.SPF_SP0" :RQSPF_SP3="match.RQSPF_SP3" :RQSPF_SP1="match.RQSPF_SP1" :RQSPF_SP0="match.RQSPF_SP0">
+                                <tr>
+                                    <td class="bule_title">{{match.LN}}</td>
+                                    <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="30%">{{match.XID|substr}}<br>截止{{match.MTIME.substr(11,5)}}</td>
+                                    <td class="yellow" style="position:relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.SPF_DG=='1'" class="dg" />0</td>
+                                    <td class="selection outer" v-if="match.SPF_DG=='1'" tag_show="胜" tag_text="SPF_SP3" :tag_val="match.SPF_SP3">胜 <span class="yellow">{{match.SPF_SP3}}</span></td>
+                                    <td class="selection outer" v-if="match.SPF_DG=='1'" tag_show="平" tag_text="SPF_SP1" :tag_val="match.SPF_SP1">平 <span class="yellow">{{match.SPF_SP1}}</span></td>
+                                    <td class="selection outer" v-if="match.SPF_DG=='1'" tag_show="负" tag_text="SPF_SP0" :tag_val="match.SPF_SP0">负 <span class="yellow">{{match.SPF_SP0}}</span></td>
+                                    <td colspan="3" v-else><span>不支持单关</span></td>
+                                    <td rowspan="2" width="20%">
+                                        <a href="javascript:;" onClick="$(this).next().show();">更多>></a>
+                                        <div id="t_odd" class="t_odd for_self_selected" style="display: none;">
+                                            <div class="odd_title">
+                                                <div class="t3_top">{{match.HTEAM}} vs {{match.ATEAM}}</div>
+                                                <div style="height:300px; overflow:scroll;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table2 mt20">
+                                                        <tr>
+                                                            <td rowspan="7" width="15%">比分</td>
+                                                            <td class="selection" tag_show="1:0" tag_text="BF_SP10" :tag_val="match.BF_SP10">1:0<br><span class="yellow">{{match.BF_SP10}}</span></td>
+                                                            <td class="selection" tag_show="2:0" tag_text="BF_SP20" :tag_val="match.BF_SP20">2:0<br><span class="yellow">{{match.BF_SP20}}</span></td>
+                                                            <td class="selection" tag_show="2:1" tag_text="BF_SP21" :tag_val="match.BF_SP21">2:1<br><span class="yellow">{{match.BF_SP21}}</span></td>
+                                                            <td class="selection" tag_show="3:0" tag_text="BF_SP30" :tag_val="match.BF_SP30">3:0<br><span class="yellow">{{match.BF_SP30}}</span></td>
+                                                            <td class="selection" tag_show="3:1" tag_text="BF_SP31" :tag_val="match.BF_SP31">3:1<br><span class="yellow">{{match.BF_SP31}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="3:2" tag_text="BF_SP32" :tag_val="match.BF_SP32">3:2<br><span class="yellow">{{match.BF_SP32}}</span></td>
+                                                            <td class="selection" tag_show="4:0" tag_text="BF_SP40" :tag_val="match.BF_SP40">4:0<br><span class="yellow">{{match.BF_SP40}}</span></td>
+                                                            <td class="selection" tag_show="4:1" tag_text="BF_SP41" :tag_val="match.BF_SP41">4:1<br><span class="yellow">{{match.BF_SP41}}</span></td>
+                                                            <td class="selection" tag_show="4:2" tag_text="BF_SP42" :tag_val="match.BF_SP42">4:2<br><span class="yellow">{{match.BF_SP42}}</span></td>
+                                                            <td class="selection" tag_show="5:0" tag_text="BF_SP50" :tag_val="match.BF_SP50">5:0<br><span class="yellow">{{match.BF_SP50}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="5:1" tag_text="BF_SP51" :tag_val="match.BF_SP51">5:1<br><span class="yellow">{{match.BF_SP51}}</span></td>
+                                                            <td class="selection" tag_show="5:2" tag_text="BF_SP52" :tag_val="match.BF_SP52">5:2<br><span class="yellow">{{match.BF_SP52}}</span></td>
+                                                            <td class="selection" tag_show="胜其他" tag_text="BF_SP93" :tag_val="match.BF_SP93" colspan="3">胜其他<br><span class="yellow">{{match.BF_SP93}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="0:0" tag_text="BF_SP00" :tag_val="match.BF_SP00">0:0<br><span class="yellow">{{match.BF_SP00}}</span></td>
+                                                            <td class="selection" tag_show="1:1" tag_text="BF_SP11" :tag_val="match.BF_SP11">1:1<br><span class="yellow">{{match.BF_SP11}}</span></td>
+                                                            <td class="selection" tag_show="2:2" tag_text="BF_SP22" :tag_val="match.BF_SP22">2:2<br><span class="yellow">{{match.BF_SP22}}</span></td>
+                                                            <td class="selection" tag_show="3:3" tag_text="BF_SP33" :tag_val="match.BF_SP33">3:3<br><span class="yellow">{{match.BF_SP33}}</span></td>
+                                                            <td class="selection" tag_show="其他平" tag_text="BF_SP91" :tag_val="match.BF_SP91">其他平<br><span class="yellow">{{match.BF_SP91}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="0:1" tag_text="BF_SP01" :tag_val="match.BF_SP01">0:1<br><span class="yellow">{{match.BF_SP01}}</span></td>
+                                                            <td class="selection" tag_show="0:2" tag_text="BF_SP02" :tag_val="match.BF_SP02">0:2<br><span class="yellow">{{match.BF_SP02}}</span></td>
+                                                            <td class="selection" tag_show="1:2" tag_text="BF_SP12" :tag_val="match.BF_SP12">1:2<br><span class="yellow">{{match.BF_SP12}}</span></td>
+                                                            <td class="selection" tag_show="0:3" tag_text="BF_SP03" :tag_val="match.BF_SP03">0:3<br><span class="yellow">{{match.BF_SP03}}</span></td>
+                                                            <td class="selection" tag_show="1:3" tag_text="BF_SP13" :tag_val="match.BF_SP13">1:3<br><span class="yellow">{{match.BF_SP13}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="2:3" tag_text="BF_SP23" :tag_val="match.BF_SP23">2:3<br><span class="yellow">{{match.BF_SP23}}</span></td>
+                                                            <td class="selection" tag_show="0:4" tag_text="BF_SP04" :tag_val="match.BF_SP04">0:4<br><span class="yellow">{{match.BF_SP04}}</span></td>
+                                                            <td class="selection" tag_show="1:4" tag_text="BF_SP14" :tag_val="match.BF_SP14">1:4<br><span class="yellow">{{match.BF_SP14}}</span></td>
+                                                            <td class="selection" tag_show="2:4" tag_text="BF_SP24" :tag_val="match.BF_SP24">2:4<br><span class="yellow">{{match.BF_SP24}}</span></td>
+                                                            <td class="selection" tag_show="0:5" tag_text="BF_SP05" :tag_val="match.BF_SP05">0:5<br><span class="yellow">{{match.BF_SP05}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="1:5" tag_text="BF_SP15" :tag_val="match.BF_SP15">1:5<br><span class="yellow">{{match.BF_SP15}}</span></td>
+                                                            <td class="selection" tag_show="2:5" tag_text="BF_SP25" :tag_val="match.BF_SP25">2:5<br><span class="yellow">{{match.BF_SP25}}</span></td>
+                                                            <td class="selection" tag_show="负其他" tag_text="BF_SP90" :tag_val="match.BF_SP90" colspan="3">负其他<br><span class="yellow">{{match.BF_SP90}}</span></td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 mt20">
+                                                        <tr>
+                                                            <td rowspan="2" width="15%">总进球</td>
+                                                            <td class="selection" tag_show="0球" tag_text="JQS_SP0" :tag_val="match.JQS_SP0">0 <span class="yellow">{{match.JQS_SP0}}</span></td>
+                                                            <td class="selection" tag_show="1球" tag_text="JQS_SP1" :tag_val="match.JQS_SP1">1 <span class="yellow">{{match.JQS_SP1}}</span></td>
+                                                            <td class="selection" tag_show="2球" tag_text="JQS_SP2" :tag_val="match.JQS_SP2">2 <span class="yellow">{{match.JQS_SP2}}</span></td>
+                                                            <td class="selection" tag_show="3球" tag_text="JQS_SP3" :tag_val="match.JQS_SP3">3 <span class="yellow">{{match.JQS_SP3}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="4球" tag_text="JQS_SP4" :tag_val="match.JQS_SP4">4 <span class="yellow">{{match.JQS_SP4}}</span></td>
+                                                            <td class="selection" tag_show="5球" tag_text="JQS_SP5" :tag_val="match.JQS_SP5">5 <span class="yellow">{{match.JQS_SP5}}</span></td>
+                                                            <td class="selection" tag_show="6球" tag_text="JQS_SP6" :tag_val="match.JQS_SP6">6 <span class="yellow">{{match.JQS_SP6}}</span></td>
+                                                            <td class="selection" tag_show="6球+" tag_text="JQS_SP7" :tag_val="match.JQS_SP7">6+ <span class="yellow">{{match.JQS_SP7}}</span></td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 mt20">
+                                                        <tr>
+                                                            <td rowspan="3" width="15%">半全场</td>
+                                                            <td class="selection" tag_show="胜胜" tag_text="BQC_SP33" :tag_val="match.BQC_SP33">胜胜 <span class="yellow">{{match.BQC_SP33}}</span></td>
+                                                            <td class="selection" tag_show="胜平" tag_text="BQC_SP31" :tag_val="match.BQC_SP31">胜平 <span class="yellow">{{match.BQC_SP31}}</span></td>
+                                                            <td class="selection" tag_show="胜负" tag_text="BQC_SP30" :tag_val="match.BQC_SP30">胜负 <span class="yellow">{{match.BQC_SP30}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="平胜" tag_text="BQC_SP13" :tag_val="match.BQC_SP13">平胜 <span class="yellow">{{match.BQC_SP13}}</span></td>
+                                                            <td class="selection" tag_show="平平" tag_text="BQC_SP11" :tag_val="match.BQC_SP11">平平 <span class="yellow">{{match.BQC_SP11}}</span></td>
+                                                            <td class="selection" tag_show="平负" tag_text="BQC_SP10" :tag_val="match.BQC_SP10">平负 <span class="yellow">{{match.BQC_SP10}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="selection" tag_show="负胜" tag_text="BQC_SP03" :tag_val="match.BQC_SP03">负胜 <span class="yellow">{{match.BQC_SP03}}</span></td>
+                                                            <td class="selection" tag_show="负平" tag_text="BQC_SP01" :tag_val="match.BQC_SP01">负平 <span class="yellow">{{match.BQC_SP01}}</span></td>
+                                                            <td class="selection" tag_show="负负" tag_text="BQC_SP00" :tag_val="match.BQC_SP00">负负 <span class="yellow">{{match.BQC_SP00}}</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="pop_btn">
+                                                    <div class="pop_btntitle2_left" onClick="thisApp.methods.cancel_selected(this);">取消</div>
+                                                    <div class="pop_btntitle2_right" onClick="$(this).parents('.t_odd').hide();">确定</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="red" style="position:relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.RQSPF_DG=='1'" class="dg" />{{ match.LET }}</td>
+                                    <td class="selection outer" v-if="match.RQSPF_DG=='1'" tag_show="让胜" tag_text="RQSPF_SP3" :tag_val="match.RQSPF_SP3">胜 <span class="yellow">{{match.RQSPF_SP3}}</span></td>
+                                    <td class="selection outer" v-if="match.RQSPF_DG=='1'" tag_show="让平" tag_text="RQSPF_SP1" :tag_val="match.RQSPF_SP1">平 <span class="yellow">{{match.RQSPF_SP1}}</span></td>
+                                    <td class="selection outer" v-if="match.RQSPF_DG=='1'" tag_show="让负" tag_text="RQSPF_SP0" :tag_val="match.RQSPF_SP0">负 <span class="yellow">{{match.RQSPF_SP0}}</span></td>
+                                    <td colspan="3" v-else><span>不支持单关</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-------- 混合投注 -------->
+                <div class="tag15 nav1">
+                    <div style="width:100%;" v-for="group in group_ex">
+                        <div class="flip">{{group.expect}} {{group.expect|dayofweek}} 共<span class="red_match">{{group.matchs.length}}</span>场比赛<img src="./src/public/images/icon_cate2.png"></div>
+                        <div class="panel">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 match_info" v-for="match in filteredBattles(group.matchs)"
+                            :SPFDG="match.SPF_DG" :BFDG="match.BF_DG" :RQSPFDG="match.RQSPF_DG"
+                            :JQSDG="match.JQS_DG" :BQCDG="match.BQC_DG" :EXPECT="match.EXPECT"
+                            :SPF_SP3="match.SPF_SP3" :SPF_SP1="match.SPF_SP1" :SID="match.SID"
+                            :SPF_SP0="match.SPF_SP0" :RQSPF_SP3="match.RQSPF_SP3" :RQSPF_SP1="match.RQSPF_SP1" :RQSPF_SP0="match.RQSPF_SP0"
+                            :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID" :MID="match.MID" :LET="match.LET"
+                            :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :LN="match.LN">
+                                <tr>
+                                    <td class="bule_title">{{match.LN}}</td>
+                                    <td colspan="4">{{match.HTEAM}} vs {{match.ATEAM}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="30%">{{match.XID|substr}}<br>{{match.MTIME.substr(11,5)}}开赛</td>
+                                    <td class="yellow" style="position:relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.SPF_DG=='1'" class="dg" />0</td>
+                                    <td class="selection outer" v-if="match.SPF_SP3!=''" tag_show="胜" tag_text="SPF_SP3" :tag_val="match.SPF_SP3">胜 <span class="yellow">{{match.SPF_SP3}}</span></td>
+                                    <td class="selection outer" v-if="match.SPF_SP1!=''" tag_show="平" tag_text="SPF_SP1" :tag_val="match.SPF_SP1">平 <span class="yellow">{{match.SPF_SP1}}</span></td>
+                                    <td class="selection outer" v-if="match.SPF_SP0!=''" tag_show="负" tag_text="SPF_SP0" :tag_val="match.SPF_SP0">负 <span class="yellow">{{match.SPF_SP0}}</span></td>
+                                    <td colspan="3" v-else><span>不支持胜平负</span></td>
+                                    <td rowspan="2" width="20%">
+                                        <a class="moreplay" href="javascript:;" onClick="$(this).next().show();" @click="more(match.XID)">更多>></a>
+                                        
+                                        
+                                        
+                                        <div id="t_odd" class="t_odd for_self_selected" style="display: none;">
+                                        	<div id="" style="height:100%;width:100%; background-color:#fff;overflow:auto">
+	                                            <div class="odd_title" id="pupup">
+	                                                <!--<div class="t3_top">{{match.HTEAM}} vs {{match.ATEAM}}</div>-->
+	                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 mt20" style="margin-top: 0;">
+	                                                	<tr>
+	                                                		<td colspan="4" style="height: 50px;line-height: 18px;">{{match.HTEAM}} vs {{match.ATEAM}}<br />{{group.expect|dayofweek}}（{{match.XID|substr}}） {{match.MTIME.substr(11,5)}}开赛</td>
+	                                                	</tr>
+                                                        <tr>
+                                                            <td width="20%">胜平负</td>
+                                                            <td class="selection" tag_show="0球" tag_text="JQS_SP0" :tag_val="match.JQS_SP0">胜 <span class="yellow">{{match.SPF_SP3}}</span></td>
+                                                            <td class="selection" tag_show="1球" tag_text="JQS_SP1" :tag_val="match.JQS_SP1">平 <span class="yellow">{{match.SPF_SP1}}</span></td>
+                                                            <td class="selection" tag_show="2球" tag_text="JQS_SP2" :tag_val="match.JQS_SP2">负 <span class="yellow">{{match.SPF_SP0}}</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td width="15%" style="line-height: 20px;">让球胜平负（-1）</td>
+                                                            <td class="selection" tag_show="4球" tag_text="JQS_SP4" :tag_val="match.JQS_SP4">胜 <span class="yellow">{{match.RQSPF_SP3}}</span></td>
+                                                            <td class="selection" tag_show="5球" tag_text="JQS_SP5" :tag_val="match.JQS_SP5">平 <span class="yellow">{{match.RQSPF_SP1}}</span></td>
+                                                            <td class="selection" tag_show="6球" tag_text="JQS_SP6" :tag_val="match.JQS_SP6">负 <span class="yellow">{{match.RQSPF_SP0}}</span></td>
+                                                        </tr>
+                                                    </table>
+	                                                <div>
+	                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table2 mt20">
+	                                                        <tr>
+	                                                            <td rowspan="7" width="15%">比分</td>
+	                                                            <td class="selection" tag_show="1:0" tag_text="BF_SP10" :tag_val="match.BF_SP10">1:0<br><span class="yellow">{{match.BF_SP10}}</span></td>
+	                                                            <td class="selection" tag_show="2:0" tag_text="BF_SP20" :tag_val="match.BF_SP20">2:0<br><span class="yellow">{{match.BF_SP20}}</span></td>
+	                                                            <td class="selection" tag_show="2:1" tag_text="BF_SP21" :tag_val="match.BF_SP21">2:1<br><span class="yellow">{{match.BF_SP21}}</span></td>
+	                                                            <td class="selection" tag_show="3:0" tag_text="BF_SP30" :tag_val="match.BF_SP30">3:0<br><span class="yellow">{{match.BF_SP30}}</span></td>
+	                                                            <td class="selection" tag_show="3:1" tag_text="BF_SP31" :tag_val="match.BF_SP31">3:1<br><span class="yellow">{{match.BF_SP31}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="3:2" tag_text="BF_SP32" :tag_val="match.BF_SP32">3:2<br><span class="yellow">{{match.BF_SP32}}</span></td>
+	                                                            <td class="selection" tag_show="4:0" tag_text="BF_SP40" :tag_val="match.BF_SP40">4:0<br><span class="yellow">{{match.BF_SP40}}</span></td>
+	                                                            <td class="selection" tag_show="4:1" tag_text="BF_SP41" :tag_val="match.BF_SP41">4:1<br><span class="yellow">{{match.BF_SP41}}</span></td>
+	                                                            <td class="selection" tag_show="4:2" tag_text="BF_SP42" :tag_val="match.BF_SP42">4:2<br><span class="yellow">{{match.BF_SP42}}</span></td>
+	                                                            <td class="selection" tag_show="5:0" tag_text="BF_SP50" :tag_val="match.BF_SP50">5:0<br><span class="yellow">{{match.BF_SP50}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="5:1" tag_text="BF_SP51" :tag_val="match.BF_SP51">5:1<br><span class="yellow">{{match.BF_SP51}}</span></td>
+	                                                            <td class="selection" tag_show="5:2" tag_text="BF_SP52" :tag_val="match.BF_SP52">5:2<br><span class="yellow">{{match.BF_SP52}}</span></td>
+	                                                            <td class="selection" tag_show="胜其他" tag_text="BF_SP93" :tag_val="match.BF_SP93" colspan="3">胜其他<br><span class="yellow">{{match.BF_SP93}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="0:0" tag_text="BF_SP00" :tag_val="match.BF_SP00">0:0<br><span class="yellow">{{match.BF_SP00}}</span></td>
+	                                                            <td class="selection" tag_show="1:1" tag_text="BF_SP11" :tag_val="match.BF_SP11">1:1<br><span class="yellow">{{match.BF_SP11}}</span></td>
+	                                                            <td class="selection" tag_show="2:2" tag_text="BF_SP22" :tag_val="match.BF_SP22">2:2<br><span class="yellow">{{match.BF_SP22}}</span></td>
+	                                                            <td class="selection" tag_show="3:3" tag_text="BF_SP33" :tag_val="match.BF_SP33">3:3<br><span class="yellow">{{match.BF_SP33}}</span></td>
+	                                                            <td class="selection" tag_show="其他平" tag_text="BF_SP91" :tag_val="match.BF_SP91">其他平<br><span class="yellow">{{match.BF_SP91}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="0:1" tag_text="BF_SP01" :tag_val="match.BF_SP01">0:1<br><span class="yellow">{{match.BF_SP01}}</span></td>
+	                                                            <td class="selection" tag_show="0:2" tag_text="BF_SP02" :tag_val="match.BF_SP02">0:2<br><span class="yellow">{{match.BF_SP02}}</span></td>
+	                                                            <td class="selection" tag_show="1:2" tag_text="BF_SP12" :tag_val="match.BF_SP12">1:2<br><span class="yellow">{{match.BF_SP12}}</span></td>
+	                                                            <td class="selection" tag_show="0:3" tag_text="BF_SP03" :tag_val="match.BF_SP03">0:3<br><span class="yellow">{{match.BF_SP03}}</span></td>
+	                                                            <td class="selection" tag_show="1:3" tag_text="BF_SP13" :tag_val="match.BF_SP13">1:3<br><span class="yellow">{{match.BF_SP13}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="2:3" tag_text="BF_SP23" :tag_val="match.BF_SP23">2:3<br><span class="yellow">{{match.BF_SP23}}</span></td>
+	                                                            <td class="selection" tag_show="0:4" tag_text="BF_SP04" :tag_val="match.BF_SP04">0:4<br><span class="yellow">{{match.BF_SP04}}</span></td>
+	                                                            <td class="selection" tag_show="1:4" tag_text="BF_SP14" :tag_val="match.BF_SP14">1:4<br><span class="yellow">{{match.BF_SP14}}</span></td>
+	                                                            <td class="selection" tag_show="2:4" tag_text="BF_SP24" :tag_val="match.BF_SP24">2:4<br><span class="yellow">{{match.BF_SP24}}</span></td>
+	                                                            <td class="selection" tag_show="0:5" tag_text="BF_SP05" :tag_val="match.BF_SP05">0:5<br><span class="yellow">{{match.BF_SP05}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="1:5" tag_text="BF_SP15" :tag_val="match.BF_SP15">1:5<br><span class="yellow">{{match.BF_SP15}}</span></td>
+	                                                            <td class="selection" tag_show="2:5" tag_text="BF_SP25" :tag_val="match.BF_SP25">2:5<br><span class="yellow">{{match.BF_SP25}}</span></td>
+	                                                            <td class="selection" tag_show="负其他" tag_text="BF_SP90" :tag_val="match.BF_SP90" colspan="3">负其他<br><span class="yellow">{{match.BF_SP90}}</span></td>
+	                                                        </tr>
+	                                                    </table>
+	
+	                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 mt20">
+	                                                        <tr>
+	                                                            <td rowspan="2" width="15%">总进球</td>
+	                                                            <td class="selection" tag_show="0球" tag_text="JQS_SP0" :tag_val="match.JQS_SP0">0 <span class="yellow">{{match.JQS_SP0}}</span></td>
+	                                                            <td class="selection" tag_show="1球" tag_text="JQS_SP1" :tag_val="match.JQS_SP1">1 <span class="yellow">{{match.JQS_SP1}}</span></td>
+	                                                            <td class="selection" tag_show="2球" tag_text="JQS_SP2" :tag_val="match.JQS_SP2">2 <span class="yellow">{{match.JQS_SP2}}</span></td>
+	                                                            <td class="selection" tag_show="3球" tag_text="JQS_SP3" :tag_val="match.JQS_SP3">3 <span class="yellow">{{match.JQS_SP3}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="4球" tag_text="JQS_SP4" :tag_val="match.JQS_SP4">4 <span class="yellow">{{match.JQS_SP4}}</span></td>
+	                                                            <td class="selection" tag_show="5球" tag_text="JQS_SP5" :tag_val="match.JQS_SP5">5 <span class="yellow">{{match.JQS_SP5}}</span></td>
+	                                                            <td class="selection" tag_show="6球" tag_text="JQS_SP6" :tag_val="match.JQS_SP6">6 <span class="yellow">{{match.JQS_SP6}}</span></td>
+	                                                            <td class="selection" tag_show="6球+" tag_text="JQS_SP7" :tag_val="match.JQS_SP7">6+ <span class="yellow">{{match.JQS_SP7}}</span></td>
+	                                                        </tr>
+	                                                    </table>
+	
+	                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table1 mt20">
+	                                                        <tr>
+	                                                            <td rowspan="3" width="15%">半全场</td>
+	                                                            <td class="selection" tag_show="胜胜" tag_text="BQC_SP33" :tag_val="match.BQC_SP33">胜胜 <span class="yellow">{{match.BQC_SP33}}</span></td>
+	                                                            <td class="selection" tag_show="胜平" tag_text="BQC_SP31" :tag_val="match.BQC_SP31">胜平 <span class="yellow">{{match.BQC_SP31}}</span></td>
+	                                                            <td class="selection" tag_show="胜负" tag_text="BQC_SP30" :tag_val="match.BQC_SP30">胜负 <span class="yellow">{{match.BQC_SP30}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="平胜" tag_text="BQC_SP13" :tag_val="match.BQC_SP13">平胜 <span class="yellow">{{match.BQC_SP13}}</span></td>
+	                                                            <td class="selection" tag_show="平平" tag_text="BQC_SP11" :tag_val="match.BQC_SP11">平平 <span class="yellow">{{match.BQC_SP11}}</span></td>
+	                                                            <td class="selection" tag_show="平负" tag_text="BQC_SP10" :tag_val="match.BQC_SP10">平负 <span class="yellow">{{match.BQC_SP10}}</span></td>
+	                                                        </tr>
+	                                                        <tr>
+	                                                            <td class="selection" tag_show="负胜" tag_text="BQC_SP03" :tag_val="match.BQC_SP03">负胜 <span class="yellow">{{match.BQC_SP03}}</span></td>
+	                                                            <td class="selection" tag_show="负平" tag_text="BQC_SP01" :tag_val="match.BQC_SP01">负平 <span class="yellow">{{match.BQC_SP01}}</span></td>
+	                                                            <td class="selection" tag_show="负负" tag_text="BQC_SP00" :tag_val="match.BQC_SP00">负负 <span class="yellow">{{match.BQC_SP00}}</span></td>
+	                                                        </tr>
+	                                                    </table>
+	                                                </div>
+	                                                <div id="currentTime" style="text-align: right;"></div>
+	                                                <div class="pop_btn">
+	                                                    <div class="pop_btntitle2_left" onClick="thisApp.methods.cancel_selected(this);">取消</div>
+	                                                    <!--<div class="pop_btntitle2_right" onClick="$(this).parents('.t_odd').hide();">确定</div>-->
+	                                                    <div class="pop_btntitle2_right" onClick="saveImg()">获取本场赔率</div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="red" style="position:relative"><img style="position:absolute;left:0;top:0;width:17px" src="./src/public/images/icon_odd.png" v-if="match.RQSPF_DG=='1'" class="dg" />{{ match.LET }}</td>
+                                    <td class="selection outer" v-if="match.RQSPF_SP3!=''" tag_show="让胜" tag_text="RQSPF_SP3" :tag_val="match.RQSPF_SP3">胜 <span class="yellow">{{match.RQSPF_SP3}}</span></td>
+                                    <td class="selection outer" v-if="match.RQSPF_SP1!=''"  tag_show="让平" tag_text="RQSPF_SP1" :tag_val="match.RQSPF_SP1">平 <span class="yellow">{{match.RQSPF_SP1}}</span></td>
+                                    <td class="selection outer" v-if="match.RQSPF_SP0!=''" tag_show="让负" tag_text="RQSPF_SP0" :tag_val="match.RQSPF_SP0">负 <span class="yellow">{{match.RQSPF_SP0}}</span></td>
+                                    <td colspan="3" v-else><span>不支持让球胜平负</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-------- footer -------->
+            <footer style="text-align: center;" data-html2canvas-ignore>
+                <!--<div class="footer_left1 border_r" onclick="javascript: location.reload();"><img src="./src/public/images/icon_dustbin.png"></div>
+                <div class="footer_mid1"><h4>已选择<span id="match_selected">0</span>场比赛</h4></div>
+                <a><div class="footer_right confirm-next">下一步</div></a>-->
+                <button style="width:100%;background: none;font-size: 20px;color: #fff;line-height: 56px;" onClick="clickSaveImg()">获取受注赛程</button>
+            </footer>
+        </div>
+        
+        <script type="text/javascript">
+    		//点击保存图片
+    		function clickSaveImg () { 
+			    // 获取保存内容的dom结构
+			  	let dom = document.getElementById('jc_content');
+//			  	let w = dom.width;
+//				let h = dom.height;
+//				let canvas = document.createElement("canvas");
+//				canvas.width = w * 2;
+//				canvas.height = h * 2;
+//				canvas.style.width = w + "px";
+//				canvas.style.height = h + "px";
+//				let context = canvas.getContext("2d");
+//				context.scale(2, 2);
+			  	
+	  			html2canvas(dom, {
+//	  				canvas: canvas,
+					allowTaint: true,
+					logging: true
+	  			}).then(canvas => {
+					try {
+						let imgUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+						let filename = 'football_' + (new Date()).getTime() + '.png';
+//						console.log(imgUrl)
+						downloadFile(filename, imgUrl);
+						
+						function downloadFile (fileName, content) {
+					        let aLink = document.createElement('a');
+					        let blob = base64ToBlob(content); //new Blob([content]);
+					
+					        let evt = document.createEvent("HTMLEvents");
+					        evt.initEvent("click", true, true);//initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
+					        aLink.download = fileName;
+					        aLink.href = URL.createObjectURL(blob);
+					
+					        // aLink.dispatchEvent(evt);
+					        aLink.click()
+					    }
+						
+					    //base64转blob
+					    function base64ToBlob (code) {
+					        let parts = code.split(';base64,');
+					        let contentType = parts[0].split(':')[1];
+					        let raw = window.atob(parts[1]);
+					        let rawLength = raw.length;
+					
+					        let uInt8Array = new Uint8Array(rawLength);
+					
+					        for (let i = 0; i < rawLength; ++i) {
+					          uInt8Array[i] = raw.charCodeAt(i);
+					        }
+					        return new Blob([uInt8Array], {type: contentType});
+					    }
+						
+//						
+//						let a = document.createElement('a');
+////						let a = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+//						a.href = imgUrl;
+//						a.download = filename;
+////						var event = document.createEvent('MouseEvents');
+////					    event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+////					    a.dispatchEvent(event);
+//						alert(a)
+//						a.click();
+						alert('图片已保存至手机本地相册');
+					} catch(err) {
+						console.log(err)
+					}
+				}).catch(function onRejected(error) {});
+			};
+				
+			function saveImg() {// 获取保存内容的dom结构
+			  	let dom = document.getElementById('pupup');
+			  	
+	  			html2canvas(dom, {
+	  				useCORS: true
+	  			}).then(canvas => {
+					try {
+						let imgUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+						let filename = 'football_' + (new Date()).getTime() + '.png';
+						
+						let a = document.createElement('a');
+						
+						$('a').attr({href: imgUrl, download: filename})
+//						a.href = imgUrl;
+//						a.download = filename;				
+						$('a').click();
+						alert('图片已保存至手机本地相册');
+					} catch(err) {
+						console.log(err)
+					}
+	  			}).catch(function onRejected(error) {});
+			} 
+			
+			//取得系统当前时间
+			function getTime(){
+				var currentTime  = new Date();
+				var year = currentTime.getFullYear();
+				var month = currentTime.getMonth();
+				var date = currentTime.getDate();
+				var hours = currentTime.getHours();					
+				var minutes = currentTime.getMinutes();
+				var dom = document.getElementById('currentTime');
+				dom.innerHTML = '当前时间：' + year + "-" + month + "-" + date + '&nbsp;' + hours + ":" + minutes; //将值赋给div
+			}
+			
+			setInterval("getTime()", 1000); //每隔一秒运行一次
+        </script>
+
+        <div id="step2" style='display:none;'>
+            <!-------- header -------->
+            <header>
+                <div class="header">
+                    <div class="back"><img src="./src/public/images/icon_back.png"><a href="javascript:thisApp.methods.go_previous();">返回</a></div>
+                    <h4>投注列表</h4>
+                </div>
+                <div class="betting_mune">
+                    <ul>
+                        <li onclick="javascript: thisApp.methods.go_previous();"><img src="./src/public/images/icon_add.png">添加/编辑赛事</li>
+                        <li>
+                            <a href="javascript:;" onClick="document.getElementById('t1').style.display='block';">清空列表</a>
+                            <div id="t1" onClick="document.getElementById('t1').style.display='';" style="display: none;">
+                                <div class="t1_title">
+                                    <h5><img src="./src/public/images/icon_important.png">确定清空当前投注内容？</h5>
+                                    <div class="pop_btn">
+                                        <div class="pop_btntitle_left" onclick="javascript:;">取消</div>
+                                        <div class="pop_btntitle_right" onclick="javascript:location.reload();">确定</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <!-------- section -------->
+            <section class="section" style="padding-bottom: 66px;display: none;">
+                <div class="plan_content">
+                    <div class="plan_box" v-for="(match,index) in match_selected_arr" :EXPECT="match.EXPECT" :SID="match.SID" :XID="match.XID" :LOTTID="match.LOTTID" :LID="match.LID" :MID="match.MID" :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM"
+                        :MTIME="match.MTIME" :HTEAM="match.HTEAM" :ATEAM="match.ATEAM" :SPF_SP3="match.SPF_SP3" :SPF_SP1="match.SPF_SP1"
+                        :SPF_SP0="match.SPF_SP0" :RQSPF_SP3="match.RQSPF_SP3" :RQSPF_SP1="match.RQSPF_SP1" :RQSPF_SP0="match.RQSPF_SP0" :LET="match.LET":LN="match.LN">
+                        <div class="plan_close"><a href="javascript:;" @click="remove_match(index,match)"><img src="./src/public/images/icon_close.png"></a></div>
+                        <p>{{match.HTEAM}} vs {{match.ATEAM}}</p>
+                        <div class="plan_option">
+                            <ul>
+                                <li v-for="tag in match.tag_arr" :MID="match.MID" :tag_show="tag.tag_show" :tag_text="tag.tag_text" :tag_val="tag.tag_val">{{tag.tag_show}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear1" style="background:#fff;margin-bottom:10px">
+                    <div class="betting_title" style="float:none;line-height:36px;border-bottom:1px solid #eaeaea;background:#fff">串关方式</div>
+                    <div id="cate21" class="cate">
+                        <div class="cate_wrp" style="display: none">
+                            <div class="cate_inp cate_tri" id="play_type" value="2.1">2串1</div>
+                            <a href="javascript:;" class="cate_tri"></a>
+                        </div>
+                        <div class="cate_drop" style="margin: 10px 0; padding: 0">
+                            <ul id="play_ul">
+                                <li id="play_li1" class="play_item" style="display:none;" value="1.1">单关</li>
+                                <li id="play_li2" class="play_item" style="display:none;" value="2.1">2串1</li>
+                                <li id="play_li3" class="play_item" style="display:none;" value="3.1">3串1</li>
+                                <li id="play_li4" class="play_item" style="display:none;" value="4.1">4串1</li>
+                                <li id="play_li5" class="play_item" style="display:none;" value="5.1">5串1</li>
+                                <li id="play_li6" class="play_item" style="display:none;" value="6.1">6串1</li>
+                                <li id="play_li7" class="play_item" style="display:none;" value="7.1">7串1</li>
+                                <li id="play_li8" class="play_item" style="display:none;" value="8.1">8串1</li>
+                            </ul>
+                        </div>
+                        <!--p>点击可切换不同串关方式</p-->
+                    </div>
+                </div>
+
+                <!--div class="clear1 mt20">
+                    <div class="betting_title">售价</div>
+                    <div id="cate22" class="cate">
+                        <div class="cate_wrp">
+                            <div class="cate_inp cate_tri" id="price_div" value="0">限时免费</div>
+                            <a href="javascript:;" class="cate_tri"></a>
+                        </div>
+                        <div class="cate_drop" style="display:none">
+                            <ul>
+                                <li value="0">限时免费</li>
+                                <li value="888">8.88</li>
+                                <li value="8880">88.8</li>
+                                <li value="18880">188.8</li>
+                            </ul>
+                        </div>
+                        <p>点击可切换不同价格</p>
+                    </div>
+                </div-->
+
+                <div class="clear1" style="margin-bottom:10px">
+                    <div class="betting_title" style="float:none;line-height:36px;border-bottom:1px solid #eaeaea;background:#fff">推荐理由</div>
+                    <div style="padding: 7px 10px; background:#fff;">
+                      <textarea class="sumary" rows="3" id="recomended_reason" placeholder="不少于6个字"></textarea>
+                    </div>
+                </div>
+
+                <div class="clear1 gd-config onec" style="display:none">
+                  <div class="betting_title" style="float:none;line-height:36px;border-bottom:1px solid #eaeaea;background:#fff">
+                    跟单配置<span class="vip"></span>
+                  </div>
+                  <div style="padding: 12px 10px 0; background:#fff;">
+                    <div class="config">
+                      <div class="config-left">跟单宣传语</div>
+                      <div class="config-right"><input class="action-com fa-reason" style="width:100%" placeholder="点击输入" /></div>
+                    </div>
+                    <div class="config">
+                      <div class="config-left">保密设置</div>
+                      <div class="config-right clearfix">
+                        <button class="action-com kdj bmsz selected" data-value="0" style="width: -webkit-calc((100% - 8px) / 3);float:left;">公开</button>
+                        <button class="action-com kdj bmsz" data-value="2" style="width: -webkit-calc((100% - 8px) / 3);float:left;margin: 0 4px">结算可见</button>
+                        <button class="action-com kdj bmsz" data-value="1" style="width: -webkit-calc((100% - 8px) / 3);float:left;">截止可见</button>
+                      </div>
+                    </div>
+                    <div class="config">
+                      <div class="config-left">利润分成</div>
+                      <div class="config-right">
+                        <div class="config-right clearfix">
+                          <button class="action-com lrfc kdj selected" data-value="0" style="width: -webkit-calc((100% - 8px) / 2);float:left;">免费</button>
+                          <button class="action-com lrfc jjfc kdj" style="width: -webkit-calc((100% - 8px) / 2);float:left;margin-left: 8px">奖金分成</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="config custom-lrfc" style="display: none">
+                      <div class="config-left"></div>
+                      <div class="config-right">
+                        <div class="config-right clearfix">
+                          <button class="action-com kdj pencent-v selected" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">1%</button>
+                          <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px">2%</button>
+                          <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">3%</button>
+                          <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;margin-right: 4px;">4%</button>
+                          <button class="action-com kdj pencent-v" style="width: -webkit-calc((100% - 16px) / 5);float:left;">5%</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="config custom-lrfc" style="display: none">
+                      <div class="config-left"></div>
+                      <div class="config-right">
+                        <div class="config-right clearfix">
+                          <span style="font-size: 16px; color: #616568; width: 54px;float:left;display:block; line-height:36px">自定义</span>
+                          <input class="action-com percent" style="width: -webkit-calc(100% - 72px);float:left;" placeholder="点击输入百分比" />
+                          <span style="float: left; line-height:36px; width: 18px; text-align:right">%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+            <!-------- footer -------->
+            <footer>
+                <a href="javascript:thisApp.methods.go_bonus();" class="footer_left" style="background: url(./src/public/images/icon_bonus_btn.png) no-repeat 0 0; background-size: contain; width: 25%; height: 56px; line-height: 56px;"></a>
+                <!--div class="footer_left"><p>最大收益</p><h4>555%</h4></div--><span id="product_profit_rate" style="display: none"></span>
+                <div class="footer_mid">
+                  <div style="display: flex; padding-right: .25rem; flex-flow: column nowrap; justify-content: flex-start; align-items: stretch">
+                    <div style="flex-grow: 1; display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center">
+                      <div style="flex-grow: 1">
+                        <p><span id="zhushu">0</span>注 <span id="zongjin">0</span>元</p>
+                      </div>
+                      <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+                        <div class="calc-note" style="padding: 2%">
+                          <div id="" class="choosebox" style="height: .45rem; width: 1.2rem;">
+
+                            <button id="" class="publish-reduce choosebox-reduce disabled">-</button>
+                            <input value="1" type="tel" id="" class="publish-nums choosebox-nums" style="width: .5rem;" />
+                            <button id="" class="publish-add choosebox-add">+</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="flex-grow: 1">
+                      <p>盈利倍数：<span id="profit_mul">0</span>倍</p>
+                    </div>
+
+                  </div>
+                </div>
+                <a href="javascript:thisApp.methods.go_submit();"><div class="footer_right publish">确认发布</div></a>
+            </footer>
+        </div>
+
+        <div id="step3" style="display:none"></div>
+    </div>
+
+    <div id="t5" onClick="document.getElementById('t5').style.display='';">
+        <div class="t2_title">
+            <h5>温馨提示</h5>
+            <div class="msg">
+                <!--<p>发布方案成功！</p>
+                <p>方案号:21143432432423</p>-->
+            </div>
+            <div class="pop_btn">
+                <div class="pop_btntitle2_left" id="btn1" onclick="javascript: location.reload();">继续发布方案</div>
+                <div class="pop_btntitle2_right" id="btn2" onclick="javascript: goAPP('screen');">配置TV内容</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="t6" onclick="document.getElementById('t6').style.display='';" style="display: none;">
+        <div class="t2_title">
+            <h5>温馨提示</h5>
+            <p>...</p>
+            <div class="pop_btn">
+                <div class="pop_btntitle" id="btn">确定</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" style="display:none;">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/public/js/jquery.js"></script>
+    <script src="./src/public/js/jquery.cookie.js"></script>
+    <script src="./src/public/js/vue.min.js"></script>
+    <script src="./src/public/js/common.js"></script>
+    <script src="./src/public/js/jczq.js?v=10"></script>
+    <!--script>
+      var element = document.createElement('script');
+      element.src = 'js/jczq.js?v=' + Math.random();
+      element.type = 'text/javascript';
+      document.body.appendChild(element);
+    </script-->
+</body>
+</html>

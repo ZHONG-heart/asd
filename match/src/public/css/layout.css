@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/** 头部容器组件  **/
+header.header-top {
+  position: relative;
+  background: #3280c5;
+  padding: 0 .26rem;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.header-inner {
+  position: relative;
+  height: .8rem;
+}
+
+.header-inner .back {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: .28rem;
+  line-height: .28rem;
+  margin-top: -.14rem;
+  padding-left: .28rem;
+  font-size: .28rem;
+  background: url(../images/icon_left.png) no-repeat 0 0;
+  background-size: contain;
+}
+
+.header-inner .header-content {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  box-align: center;
+  height: 100%;
+  font-size: .32rem;
+}
+
+/** 尾部容器组件  **/
+footer.bonus-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  color: #fff;
+  flex: 0 0 1.12rem;
+  position: relative;
+  top: auto;
+  width: auto;
+  bottom: auto;
+}
+
+.bonus-noteamount,
+.bonus-submit {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.bonus-noteamount {
+  flex: 1;
+  background: #357dc1;
+  padding: 0 .26rem;
+}
+
+.bonus-noteamount small {
+  margin-top: .1rem;
+  font-size: .28rem;
+}
+
+.bonus-note-total,
+.bonus-amount-total {
+  font-size: .46rem;
+  margin-right: .1rem;
+  word-break: break-all;
+}
+
+.bonus-amount-total {
+  margin-left: .4rem;
+}
+
+.bonus-submit {
+  flex: 0 0 2.36rem;
+  background: #fd9e2f;
+  font-size: .3rem;
+}
+
+.vip {
+  display: inline-block;
+  margin-left: 10px;
+  width: 50px;
+  height: 22.5px;
+  vertical-align: middle;
+  background: url(../images/img_vip.png) no-repeat 0 0/contain;
+}
+
+.vip.hidden {
+  display: none;
+}
+
+.action-com {
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #b1b1b1;
+  background: #fff;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+  color: #878787;
+}
+
+.action-com.selected {
+  background: #ff9f1c;
+  color: #fff;
+  border-color: #ff9f1c;
+}
+
+.config {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  font-size: 16px;
+  padding-bottom: 12px;
+}
+
+.config-left {
+  flex: 0 0 90px;
+}
+
+.config-right {
+  flex: 1;
+  font-size: 14px;
+}
